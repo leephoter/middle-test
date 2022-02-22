@@ -20,15 +20,14 @@ const solution = (text) => {
 
   const num = text.split(' ');
   const firstNum = num.map((item) =>
-    item[0] >= 1 && item[0] <= 6 ? Number(item[0]) : 0
+    item < 10000 && item[0] >= 1 && item[0] <= 6 ? Number(item[0]) : 0
   );
 
   firstNum.forEach((item, index) => {
-    result[check[item]].push(num[index]);
+    result[check[item]] = [...result[check[item]], Number(num[index])].sort(
+      (a, b) => a - b
+    );
   });
 
-  console.log(`result`, result);
+  return result;
 };
-
-const text = '1532 5342 8329 2632 5849 3213 1002';
-solution(text);
